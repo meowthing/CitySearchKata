@@ -5,11 +5,12 @@ namespace SearchTests
     public class Tests
     {
         CitySearcher cSearcher;
+        string listOfCities = "Paris, Budapest, Skopje, Rotterdam, Valencia, Vancouver, Amsterdam, Vienna, Sydney, New York City, London, Bangkok, Hong Kong, Dubai, Rome, Istanbul";
 
         [SetUp]
         public void Setup()
         {
-            cSearcher = new CitySearcher();
+            cSearcher = new CitySearcher(listOfCities);
         }
 
         [Test]
@@ -39,7 +40,7 @@ namespace SearchTests
         [Test]
         public void ReturnAllCitiesUsingSpecialCharacter()
         {
-            Assert.That(cSearcher.Search("ape"), Has.Count.AtLeast(1));
+            Assert.That(cSearcher.Search("*"), Is.EqualTo(listOfCities));
         }
     }
 }
